@@ -1,0 +1,6 @@
+{
+  "upstream": "Vaultage V2 allowlisted open-core export",
+  "sourceRevision": "b3348f0a4c0c9cd9bcd804ac8b8a615dd090eb47",
+  "exportGeneratedAt": "2026-10-02T18:39:59.003Z",
+  "scope": "Licensed Core/generic MCP/value-free contract libraries only. New Community app source is separately Apache-2.0."
+}

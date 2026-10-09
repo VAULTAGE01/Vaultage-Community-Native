@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-02T18:39:59.003Z",
+  "package": "VaultageOpenCore",
+  "sourceAllowlist": {
+    "core": [
+      "Sources/VaultageCore/AgentOriginReader.swift",
+      "Sources/VaultageCore/AgentPairing.swift",
+      "Sources/VaultageCore/AgentPairingBindings.swift",
+      "Sources/VaultageCore/BrokerAgentPairing.swift",
+      "Sources/VaultageCore/GrantSigning.swift",
+      "Sources/VaultageCore/SystemLockSignals.swift",
+      "Sources/VaultageCore/BrokerRemotePublication.swift",
+      "Sources/VaultageCore/RemoteConnectRequest.swift",
+      "Sources/VaultageCore/AccountAPITokens.swift",
+      "Sources/VaultageCore/AccountClient.swift",
+      "Sources/VaultageCore/AccountReads.swift",
+      "Sources/VaultageCore/Broker.swift",
+      "Sources/VaultageCore/BrokerFacade.swift",
+      "Sources/VaultageCore/CanonicalDigest.swift",
+      "Sources/VaultageCore/ClientEnrollment.swift",
+      "Sources/VaultageCore/CompositeCredential.swift",
+      "Sources/VaultageCore/CredentialClass.swift",
+      "Sources/VaultageCore/TokenExchange.swift",
+      "Sources/VaultageCore/TokenExchangeReader.swift",
+      "Sources/VaultageCore/TokenExchangeCache.swift",
+      "Sources/VaultageCore/ServiceAccountKey.swift",
+      "Sources/VaultageCore/JWTAssertion.swift",
+      "Sources/VaultageCore/CredentialDelivery.swift",
+      "Sources/VaultageCore/CredentialRotation.swift",
+      "Sources/VaultageCore/DeployedCredentialLedger.swift",
+      "Sources/VaultageCore/DeviceConnectionReport.swift",
+      "Sources/VaultageCore/DeviceLinkReturn.swift",
+      "Sources/VaultageCore/ProviderConnectCeremony.swift",
+      "Sources/VaultageCore/UserGrantLifecycle.swift",
+      "Sources/VaultageCore/Grant.swift",
+      "Sources/VaultageCore/HumanDisclosure.swift",
+      "Sources/VaultageCore/KeychainAccessGroup.swift",
+      "Sources/VaultageCore/KeychainVault.swift",
+      "Sources/VaultageCore/MCPInstallSnippets.swift",
+      "Sources/VaultageCore/MacDeviceKeyRoles.swift",
+      "Sources/VaultageCore/ManagedConnectionPolicy.swift",
+      "Sources/VaultageCore/MetadataStore.swift",
+      "Sources/VaultageCore/Models.swift",
+      "Sources/VaultageCore/OwnerAuthentication.swift",
+      "Sources/VaultageCore/ProviderResourceOperations.swift",
+      "Sources/VaultageCore/Provisioning.swift",
+      "Sources/VaultageCore/ProvisioningConversation.swift",
+      "Sources/VaultageCore/ReceiptStore.swift",
+      "Sources/VaultageCore/RemoteApprovalDigests.swift",
+      "Sources/VaultageCore/RemoteApprovalPublication.swift",
+      "Sources/VaultageCore/RemoteApprovalSummary.swift",
+      "Sources/VaultageCore/RemoteApprovalTransport.swift",
+      "Sources/VaultageCore/BrokerRemoteApprovals.swift",
+      "Sources/VaultageCore/RemoteConnectConsumption.swift",
+      "Sources/VaultageCore/RemoteConnectEnvelope.swift",
+      "Sources/VaultageCore/RemoteDecisionApplication.swift",
+      "Sources/VaultageCore/RemoteDecisionVerification.swift",
+      "Sources/VaultageCore/RemoteMacPresence.swift",
+      "Sources/VaultageCore/RemoteMirroringConsent.swift",
+      "Sources/VaultageCore/RemoteRosterRefresh.swift",
+      "Sources/VaultageCore/RemoteRosterKeys.swift",
+      "Sources/VaultageCore/RemoteDeviceKeyThumbprint.swift",
+      "Sources/VaultageCore/RemoteDevicePairing.swift",
+      "Sources/VaultageCore/RemoteGrantCommit.swift",
+      "Sources/VaultageCore/RemoteGrantLifecycle.swift",
+      "Sources/VaultageCore/RemoteOfferedCoverage.swift",
+      "Sources/VaultageCore/RemoteSASWordlist.swift",
+      "Sources/VaultageCore/RemoteSummaryComposition.swift",
+      "Sources/VaultageCore/RemoteSummarySealing.swift",
+      "Sources/VaultageCore/RemoteSummaryValidation.swift",
+      "Sources/VaultageCore/ResourceInventory.swift",
+      "Sources/VaultageCore/ResourceInventoryQuery.swift",
+      "Sources/VaultageCore/ResourceInventoryRefresh.swift",
+      "Sources/VaultageCore/RuntimeDelivery.swift",
+      "Sources/VaultageCore/VaultAttachmentStore.swift",
+      "Sources/VaultageCore/VaultCipherStore.swift",
+      "Sources/VaultageCore/BrokerVaultCustody.swift",
+      "Sources/VaultageCore/VaultBatchPresence.swift",
+      "Sources/VaultageCore/VaultContentKeys.swift",
+      "Sources/VaultageCore/VaultCredentialImport.swift",
+      "Sources/VaultageCore/VaultDeletionQueue.swift",
+      "Sources/VaultageCore/VaultFoldFailureStore.swift",
+      "Sources/VaultageCore/VaultHead.swift",
+      "Sources/VaultageCore/VaultHeadRefusalStore.swift",
+      "Sources/VaultageCore/VaultItemTypes.swift",
+      "Sources/VaultageCore/VaultOrganization.swift",
+      "Sources/VaultageCore/VaultRecordBudget.swift",
+      "Sources/VaultageCore/VaultRecordFormat.swift",
+      "Sources/VaultageCore/VaultSyncApply.swift",
+      "Sources/VaultageCore/VaultSyncTransport.swift",
+      "Sources/VaultageCore/BrokerVaultSync.swift",
+      "Sources/VaultageCore/VaultSecret.swift"
+    ],
+    "mcp": [
+      "Sources/VaultageMCP/MCPServer.swift"
+    ],
+    "brokerContract": [
+      "Sources/VaultageBrokerContract/BrokerProtocol.swift",
+      "Sources/VaultageBrokerContract/BrokerWire.swift"
+    ]
+  },
+  "files": [
+    {
+      "path": "LICENSE-APACHE-2.0.txt",
+      "sha256": "8c6db340475136df3c1201d458fa5755698eace76e510471ecc9d857d6083dac"
+    },
+    {
+      "path": "LICENSE-SCOPE.md",
+      "sha256": "88a907108a6e4ce48a0bafd2cf8f3f76b6b88bb175c8207820641aee19b13303"
+    },
+    {
+      "path": "NOTICE.md",
+      "sha256": "a066e838c33994f1ed792cfcc25d162e53753c4843d06b356c599734bc736928"
+    },
+    {
+      "path": "Package.resolved",
+      "sha256": "772f41f753e232047b55aaf7109ea1dd710f113ec6dc94c7e000689481d74183"
+    },
+    {
+      "path": "Package.swift",
+      "sha256": "548b22fd5e67a5658129277fdb929b3e1b88d6451ae11201dc86e2535efb8b1f"
+    },
+    {
+      "path": "README.md",
+      "sha256": "653f97b448121ad1792ea5789e465af7682e596cc1abcf72d967e2baa541b5e6"
+    },
+    {
+      "path": "Sources/VaultageBrokerContract/BrokerProtocol.swift",
+      "sha256": "b1d1777bd5dd316dfb11baff8771c959386f859ba91d73693d32569d0e969885"
+    },
+    {
+      "path": "Sources/VaultageBrokerContract/BrokerWire.swift",
+      "sha256": "f2531329cff020298986d940fb7b7af8a2fbe838e6a4fc013278df893d277998"
+    },
+    {
+      "path": "Sources/VaultageCore/AccountAPITokens.swift",
+      "sha256": "369c94096b5cb4d9b4bff0c417c000bb84053eb746c70e705f1e6050d28db244"
+    },
+    {
+      "path": "Sources/VaultageCore/AccountClient.swift",
+      "sha256": "6a0c1b62cebcb58719c7eb19cfd6bc2a38a5d220a4830acf8b97756118c71790"
+    },
+    {
+      "path": "Sources/VaultageCore/AccountReads.swift",
+      "sha256": "5e146a43db4426ded495b87ec06728c96496ac896610329f36edfc32f797f9ec"
+    },
+    {
+      "path": "Sources/VaultageCore/AgentOriginReader.swift",
+      "sha256": "3cc82f5ac8bae05843397280cb099c3d74fbb98c610fdfe40ab65e3995fc567f"
+    },
+    {
+      "path": "Sources/VaultageCore/AgentPairing.swift",
+      "sha256": "ce64231d069d8c60489f4483412d34956560a5ff04e3b8c3277b515dcfbcdd27"
+    },
+    {
+      "path": "Sources/VaultageCore/AgentPairingBindings.swift",
+      "sha256": "ed996ef493df01447a3fa4f438b5422dbedc0b73b67c3cfa3a0a529eec3e7ab0"
+    },
+    {
+      "path": "Sources/VaultageCore/Broker.swift",
+      "sha256": "3dab659c11ff89e7e4011236fe708ea89619a0d78d87372088bbf09f22a3ef24"
+    },
+    {
+      "path": "Sources/VaultageCore/BrokerAgentPairing.swift",
+      "sha256": "635fbf90ef7f7fd58b3f9fe5914b9da9af086cb4cbe79f151829926c5f0dc8fd"
+    },
+    {
+      "path": "Sources/VaultageCore/BrokerFacade.swift",
+      "sha256": "9c82a028a2b3e8cbe2115de53091f3b0aeb9942cb7a56b2b382a36e317aefea5"
+    },
+    {
+      "path": "Sources/VaultageCore/BrokerRemoteApprovals.swift",
+      "sha256": "27306e707bcf8199e5b0823aa72ddddc0189adcbf948eefa3c9aef7c32ff4c34"
+    },
+    {
+      "path": "Sources/VaultageCore/BrokerRemotePublication.swift",
+      "sha256": "c0e99d623a28320e612f567e8ac93e68695dd9a87dd74186d931ed7408c7fe8c"
+    },
+    {
+      "path": "Sources/VaultageCore/BrokerVaultCustody.swift",
+      "sha256": "56a592235fb04e26362e3b07adf01977d74d2759b11a6a88bb32ef2154142700"
+    },
+    {
+      "path": "Sources/VaultageCore/BrokerVaultSync.swift",
+      "sha256": "75311d6383ca3bcf73991f380d0bcf71c3a8e5df9872530027756650cab64d24"
+    },
+    {
+      "path": "Sources/VaultageCore/CanonicalDigest.swift",
+      "sha256": "5516973f41e66c15d48e022a02ae939734e896663e4d340aa637e2d353dc135f"
+    },
+    {
+      "path": "Sources/VaultageCore/ClientEnrollment.swift",
+      "sha256": "e6d4577c83fb49a12b23622799154629de65dae12970b8fc1c5fe8b773bff3a6"
+    },
+    {
+      "path": "Sources/VaultageCore/CompositeCredential.swift",
+      "sha256": "40b9b05f0c00fa6111509e7be4253596eae9e9ba8842447fd78f1cc11515f1ee"
+    },
+    {
+      "path": "Sources/VaultageCore/CredentialClass.swift",
+      "sha256": "a91ba26aba6cc556a46f8e856f9b854a37300339a32ace980caa8e640a547210"
+    },
+    {
+      "path": "Sources/VaultageCore/CredentialDelivery.swift",
+      "sha256": "cc1c00ae408d2b4af6e64fa05788f19bc7faa6065963909319a83370f9a26716"
+    },
+    {
+      "path": "Sources/VaultageCore/CredentialRotation.swift",
+      "sha256": "2777d1a519f77424672f30d56bf8bb6934b2eed41d4d19462696d4069bfa1dee"
+    },
+    {
+      "path": "Sources/VaultageCore/DeployedCredentialLedger.swift",
+      "sha256": "db177d040195528c9d5a642acec02f27d5062dcd7d7ce29e68d888680078d4ea"
+    },
+    {
+      "path": "Sources/VaultageCore/DeviceConnectionReport.swift",
+      "sha256": "08e5bacb4d84377cacfa9f375c0d180e355a77fd941d60c868570b2ee1b935aa"
+    },
+    {
+      "path": "Sources/VaultageCore/DeviceLinkReturn.swift",
+      "sha256": "541fd4703946be004c84b3b334dad1c7773118cc793e68c9be7300ba4be88620"
+    },
+    {
+      "path": "Sources/VaultageCore/Grant.swift",
+      "sha256": "bd986a65fefb8bb4250e24ac191a5c4c03b4d7715206cce85b1b99fad4fb9cc2"
+    },
+    {
+      "path": "Sources/VaultageCore/GrantSigning.swift",
+      "sha256": "1e9a5d6700882f403fb3bf051fad6a79dbbbd1b0e274d6ab0efe6913af8d2465"
+    },
+    {
+      "path": "Sources/VaultageCore/HumanDisclosure.swift",
+      "sha256": "53f4caafca2e660190ba15a7b1d9a96c55bb11c1b60c997713dd933475cf0479"
+    },
+    {
+      "path": "Sources/VaultageCore/JWTAssertion.swift",
+      "sha256": "8bfc15ee1d7a81b20919246857b0baa6b9356e9d7f38a1ebc6afb9e24d3e57f4"
+    },
+    {
+      "path": "Sources/VaultageCore/KeychainAccessGroup.swift",
+      "sha256": "6ae26466541ff44a30698974dddf3865da6da08c160e6908609a8a27b35d2ba6"
+    },
+    {
+      "path": "Sources/VaultageCore/KeychainVault.swift",
+      "sha256": "de5fa1d6577f50c409d41a91bf4690feb463bde839401cafd040d1fcf639d484"
+    },
+    {
+      "path": "Sources/VaultageCore/MCPInstallSnippets.swift",
+      "sha256": "21ab7adf576e4aae33b9a3a5006a41447c5dea24d7057c4bd5b9c6a176808e69"
+    },
+    {
+      "path": "Sources/VaultageCore/MacDeviceKeyRoles.swift",
+      "sha256": "d5880f9bcc6a20250bbee9307c171df4a1161058cc5b6599e56585bc1f37a703"
+    },
+    {
+      "path": "Sources/VaultageCore/ManagedConnectionPolicy.swift",
+      "sha256": "6ecadc337d5cc3fcd5a83119096dd89d7b75e77c4f6530ef41e61c2e3382e4a3"
+    },
+    {
+      "path": "Sources/VaultageCore/MetadataStore.swift",
+      "sha256": "6ce6be21075bd318f6d8e6fb5dfd102b3f460cef96784458f7b006862fc26ed9"
+    },
+    {
+      "path": "Sources/VaultageCore/Models.swift",
+      "sha256": "c7effd7db6af3614468f7d384eb8d5abba9b942a8458c2b590613f4d76b089f5"
+    },
+    {
+      "path": "Sources/VaultageCore/OwnerAuthentication.swift",
+      "sha256": "a918cb421cae3ce3ea7bb51aa5dbb57b7718cc3d846df77fa4a9f3cab535aad0"
+    },
+    {
+      "path": "Sources/VaultageCore/ProviderConnectCeremony.swift",
+      "sha256": "9686eba090124a57884598592030b075000c37dce5d2e17aef47d81767735510"
+    },
+    {
+      "path": "Sources/VaultageCore/ProviderResourceOperations.swift",
+      "sha256": "db1e1eaee1cef27fb529b73210cd031d6b90d6bdadd50254616d6e6234aee6ef"
+    },
+    {
+      "path": "Sources/VaultageCore/Provisioning.swift",
+      "sha256": "0fd0b730e12b5a6d4067fc629c1b50007d8ab673997fc6f4d460c07959350589"
+    },
+    {
+      "path": "Sources/VaultageCore/ProvisioningConversation.swift",
+      "sha256": "cf05724fa5953d9cb44c7fed7882ace302fca53a94bfd5e523b3f43ac33aa6df"
+    },
+    {
+      "path": "Sources/VaultageCore/ReceiptStore.swift",
+      "sha256": "87156658516aebaf0d2ec544dabf9a2a7c7cb5c1c37e2b4ee25fc52f1ad055ca"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteApprovalDigests.swift",
+      "sha256": "1bdc5107d421711ee898a8e6b54287c268eb76fab564d7278505207d9c7da4ff"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteApprovalPublication.swift",
+      "sha256": "d46da057f6049b4990b6d304eadeeaeb85afd76f0aab91796bd09a08d2c7ed5d"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteApprovalSummary.swift",
+      "sha256": "317837d0dcc83bd23874cba1641611b515d8020af1d3cef994fd2705d92842ba"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteApprovalTransport.swift",
+      "sha256": "0fe61de4da1b2736189fb00102c7ea809f57a6f035e1d5c359e3c19944a20e03"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteConnectConsumption.swift",
+      "sha256": "cc263dbc7d0fb6fb5ce8eb7cfca105e922d46a23584311f2eeb80566f18f58e6"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteConnectEnvelope.swift",
+      "sha256": "317754e397bb8b3e709767504f5ee4fdfb96d0cb8c99c838f8440951a4d3e231"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteConnectRequest.swift",
+      "sha256": "007ddb8c9af761870e1307670d3d8c72b2c1ea4d1da007d2af6745f9a72f9445"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteDecisionApplication.swift",
+      "sha256": "5108ee126797f5e9cdcec36621f8ef8e09b6be5ed61ea0d3a0a56aaf7c63a46f"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteDecisionVerification.swift",
+      "sha256": "87747d25469122d6af3e54ee08f6538b4f6d20fef8d1eef8faeb4585cd12cb2c"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteDeviceKeyThumbprint.swift",
+      "sha256": "3a8e798a4deae1a49f81b8dd528e281b2da5f763ce58c875135b47b45cf55f20"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteDevicePairing.swift",
+      "sha256": "dc8e8fb42cb6428a03581f5c407597654dd146280d68e3e7a4ed549014df8da0"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteGrantCommit.swift",
+      "sha256": "36036a53c4e4e4abbc1ef351a1453ef3777a30426f520ea2844d5486516e4c91"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteGrantLifecycle.swift",
+      "sha256": "c346cc539703ed1ae29f0fbf0088025c273d68ea9fe436023ba00ac663526b2b"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteMacPresence.swift",
+      "sha256": "bbcb9c1ceadb0d39473dc3e7cad2b101311f91c8ce154a0e85df5bd3caacc4cf"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteMirroringConsent.swift",
+      "sha256": "5bc1e1dfe75f831fdfe65c93b7c089c388c6f7d95aa6b1f9f849ae4f5eaf19b2"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteOfferedCoverage.swift",
+      "sha256": "500d3181bd4b80b97fac14fd5b4b7c278f13f7bc7a09e1f95851a3ebab52763a"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteRosterKeys.swift",
+      "sha256": "e369e3494a62af0cb3286fb362e56ab119cffd695ce1aca3fb5774e19bc240fa"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteRosterRefresh.swift",
+      "sha256": "532ac0c02f277a40f5ed952cb0e7fa0d8d07fdfb9747811fb53f99e248d9c99e"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteSASWordlist.swift",
+      "sha256": "8dde6cb69f5dcd6d8e72cc0dfff076f91409d7181d591ae788fe73980d7ebfd5"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteSummaryComposition.swift",
+      "sha256": "c2b1a4b04834f414cee28d2652ef227c611dfd98fb729444133a67a721b19ee2"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteSummarySealing.swift",
+      "sha256": "d560409406610d1b95c24bb22f0eb91df70f21f94ad762a29c75eb52f36581ed"
+    },
+    {
+      "path": "Sources/VaultageCore/RemoteSummaryValidation.swift",
+      "sha256": "70520c78f2afaf76f1ba40fdfce3a3a6cf96bb66bba1edfdbd49d9c9f19da49f"
+    },
+    {
+      "path": "Sources/VaultageCore/ResourceInventory.swift",
+      "sha256": "0fb516fade2f5e95a3dcdb131f420a6f656e0db3ad489adce653499a60993543"
+    },
+    {
+      "path": "Sources/VaultageCore/ResourceInventoryQuery.swift",
+      "sha256": "4150bbf74e7b3644646a077ded14ef82d45744697a7a91febdc09e74916198ff"
+    },
+    {
+      "path": "Sources/VaultageCore/ResourceInventoryRefresh.swift",
+      "sha256": "969ce40b1c604223ec53497b7401463ae3baae9cfc6594ef2d5206467ed0ecbd"
+    },
+    {
+      "path": "Sources/VaultageCore/RuntimeDelivery.swift",
+      "sha256": "24cd3e44ddfbe1b60a1f5bf050a3ebd1b19aa7df5a456953019afd9af3b04ad5"
+    },
+    {
+      "path": "Sources/VaultageCore/ServiceAccountKey.swift",
+      "sha256": "03d248376985cd5a8c9aac0748620d4df6ade5ab325bbb03deeef426c29ef861"
+    },
+    {
+      "path": "Sources/VaultageCore/SystemLockSignals.swift",
+      "sha256": "b8a4552db70627d7b74ae0890421a56f1d656559df18d8246636107baab215fc"
+    },
+    {
+      "path": "Sources/VaultageCore/TokenExchange.swift",
+      "sha256": "13937028f4abdf6866b63ec9702b3d2a5ed2079d1314c8c7c77e31bfa5ee2a5b"
+    },
+    {
+      "path": "Sources/VaultageCore/TokenExchangeCache.swift",
+      "sha256": "ce4403ccd65cddd07e8ba259cf0439b472351bb07154d5b23396397ce7cfcd5a"
+    },
+    {
+      "path": "Sources/VaultageCore/TokenExchangeReader.swift",
+      "sha256": "4f523914ad53494ba5a8fcc52975dc6f8271c3c5cda8eecf491a0b671620ea41"
+    },
+    {
+      "path": "Sources/VaultageCore/UserGrantLifecycle.swift",
+      "sha256": "078408712aaedcb93f1152c6d42ad4cc0de29c80dadc1cef6f4820cd0509a729"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultAttachmentStore.swift",
+      "sha256": "ead57f701a8d8eae711c5b4d2e1cd17f71a2246d6b4a772e712769691546dde6"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultBatchPresence.swift",
+      "sha256": "17c6e1596c8e4b4e3f491a28bff0335bfbcbc4cd3c37028568c7ee9614110efb"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultCipherStore.swift",
+      "sha256": "0af993a6eddbb010ed301d4f76a5bb52e5fdb6429ac74cc2fd813fb652ba6928"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultContentKeys.swift",
+      "sha256": "796cc2f31a61e9af0c3ee92b9ddbfccef431610cf52147bf02b6f2f7c4b81042"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultCredentialImport.swift",
+      "sha256": "1989d3da10c69b51418cea517de230a566cc57ae051a6f49bebfe69390f08a91"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultDeletionQueue.swift",
+      "sha256": "b58611c934d1305964c9d88df59fc9c40442d477d7962d1ad5075fe39ca5c4a3"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultFoldFailureStore.swift",
+      "sha256": "88e286cb18dbe08898da247e037121258ad1c4f347545f805554879db768dc88"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultHead.swift",
+      "sha256": "497ab8760b9ac0682a8b6bd1387e98a53506b3f22a553596175ec240479b1f66"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultHeadRefusalStore.swift",
+      "sha256": "2dd86522332abeebbf01af8c91941cb63833222b1469602b367bf8091009748e"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultItemTypes.swift",
+      "sha256": "4f9ac5a613b3cd6fbccd5947b51c884a7f59c446be17d091fff843e07a5bdbae"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultOrganization.swift",
+      "sha256": "982da1e7bf244bdcc7c7d56e7f2dbfe6e38455980b84208d27aded159218f62e"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultRecordBudget.swift",
+      "sha256": "fce3baeb7842d3d9e6f166e917f7040b10cd4c676bfd17fa47bb6f0417f05a12"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultRecordFormat.swift",
+      "sha256": "1036be9a0b970ecb5560ebda18edbff5b03d0e5563b99046438ccd19696e19c3"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultSecret.swift",
+      "sha256": "ef07063c734466e7b690f83cee7d55c60dc5fc9012fccb2b5e2406874bd684bf"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultSyncApply.swift",
+      "sha256": "c0b572dfc2ab5cd8e94049831b40d290cac71115043f7c45c78cc754328d7f2e"
+    },
+    {
+      "path": "Sources/VaultageCore/VaultSyncTransport.swift",
+      "sha256": "0a3dcebf170fc6de29be086c18c8764c19ce0f5e9156931dcb07668db17f7eaa"
+    },
+    {
+      "path": "Sources/VaultageMCP/MCPServer.swift",
+      "sha256": "cbdbcb851911e453199daa289d2235b7530622e1c7d0e4f2b5b959673f5ed485"
+    },
+    {
+      "path": "third-party/eventsource-LICENSE.md",
+      "sha256": "494ebb884dbac5da91c27cd8bfbb2fecb89bf8804709cd6e445417c7bfb992e6"
+    },
+    {
+      "path": "third-party/jose-LICENSE.md",
+      "sha256": "9ef23c2570f3063a4b5ed3a79847d0b08b9a28a1d8e3f70e5470b2c097604a19"
+    },
+    {
+      "path": "third-party/swift-atomics-LICENSE.txt",
+      "sha256": "e859b9ea44caa0bb817f080d8601477916419f464209b222fd73c852edb1df0d"
+    },
+    {
+      "path": "third-party/swift-collections-LICENSE.txt",
+      "sha256": "e859b9ea44caa0bb817f080d8601477916419f464209b222fd73c852edb1df0d"
+    },
+    {
+      "path": "third-party/swift-log-LICENSE.txt",
+      "sha256": "8c6db340475136df3c1201d458fa5755698eace76e510471ecc9d857d6083dac"
+    },
+    {
+      "path": "third-party/swift-log-NOTICE.txt",
+      "sha256": "6c1500cbf3b58c910fc0780058fb16d8e5eda13ba7c15ebe3d3d0d0d5664e1cd"
+    },
+    {
+      "path": "third-party/swift-nio-CNIOLLHTTP-LICENSE.txt",
+      "sha256": "acb6917d97eef663155d98059d2f8f6cfb3206a799a287559d500eebf2b19753"
+    },
+    {
+      "path": "third-party/swift-nio-FreeBSD-sha1-LICENSE-BSD-3-Clause.txt",
+      "sha256": "6805c9cd40292f774a660783d60bede8aba0fa7a2a80df3198e9a38c0aed1eae"
+    },
+    {
+      "path": "third-party/swift-nio-LICENSE.txt",
+      "sha256": "8c6db340475136df3c1201d458fa5755698eace76e510471ecc9d857d6083dac"
+    },
+    {
+      "path": "third-party/swift-nio-NOTICE.txt",
+      "sha256": "8e28e5a1fc6daee090b0321148444d6c2cd5deeb19cab57a54d572ee3d15165f"
+    },
+    {
+      "path": "third-party/swift-nio-llhttp-LICENSE-MIT.txt",
+      "sha256": "acb6917d97eef663155d98059d2f8f6cfb3206a799a287559d500eebf2b19753"
+    },
+    {
+      "path": "third-party/swift-nio-uSHET-LICENSE-MIT.txt",
+      "sha256": "98a24e90d82711be38f93e530d81aac11fe7d0068bc9ff0074cdd9c828f7fab5"
+    },
+    {
+      "path": "third-party/swift-sdk-LICENSE.txt",
+      "sha256": "4b802970ed0a9ed99b49d821e85907b4fad6ed61199c4d513df29a0720e9d93b"
+    },
+    {
+      "path": "third-party/swift-system-LICENSE.txt",
+      "sha256": "770af8291f708538d8ff885a0bbc4e045cd700531741c4f99528d435c14d7f55"
+    }
+  ],
+  "hashFile": "FILES.sha256",
+  "hashFileExcludes": [
+    "FILES.sha256",
+    "EXPORT-MANIFEST.json"
+  ]
+}

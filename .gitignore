@@ -1,0 +1,16 @@
+.build/
+.swiftpm/
+.DS_Store
+dist/
+.work/
+*.provisionprofile
+*.p12
+*.p8
+*.pem
+*.key
+*.dmg
+*.zip
+*.vault
+metadata.json
+*.env
+.env*

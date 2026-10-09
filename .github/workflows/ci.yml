@@ -1,0 +1,19 @@
+name: Native source checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - run: swift --version
+      - run: node scripts/verify-source-boundary.mjs
+      - run: swift build
+      - run: COMMUNITY_TEST_NODE="$(command -v node)" swift run CommunityKitTests
+      - run: swift build -c release --product VaultageCommunity
