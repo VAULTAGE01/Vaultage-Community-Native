@@ -1,6 +1,6 @@
-# Security and source-preview limits
+# Security and open-beta limits
 
-This is a native source preview. Buildability and synthetic tests do not establish a complete signed/notarized, clean-machine release or all assistive-technology behavior.
+The published native Community open beta is Developer ID signed and Apple notarized. Strict signatures, stapled tickets and Gatekeeper were verified for the app and DMG. Clean-machine installation and broader assistive-technology behavior remain unverified. See [release evidence](docs/RELEASE-STATUS.md).
 
 Credential values are stored through the V2 open core's KeychainVault; its user-presence and fail-closed access-group checks remain unchanged. An unsigned synthetic Keychain write was refused with `errSecMissingEntitlement` (-34018) on the development machine. Source builds and fake-vault tests do not prove native Keychain custody. Distribution signing requires an authorized, separately configured Community App ID and Keychain access group; no private profile, credential or signing identity is shipped in source.
 

@@ -2,7 +2,9 @@
 
 A free-forever, accountless macOS secrets manager and local project workspace, built from Vaultage V2's open core.
 
-**Native source preview.** This repository is under active development. It is not an official signed/notarized installer release. The separate Vaultage product beta and its account requirement do not apply to this local Community app.
+**Open beta for Apple silicon Macs running macOS 14 or later.** [Download the signed, Apple-notarized Community installer](https://github.com/VAULTAGE01/Vaultage-Community-Native/releases/tag/v0.1.0-beta.3). Version 0.1.0, build 3 is free forever and accountless. The separate Vaultage product beta and its account requirement do not apply to this local Community app.
+
+The release includes the DMG, SHA-256 checksum and exact source manifest. See [release evidence and remaining beta limits](docs/RELEASE-STATUS.md).
 
 ## Scope
 
@@ -24,7 +26,7 @@ node scripts/verify-source-boundary.mjs
 swift run VaultageCommunity
 ```
 
-The UI and synthetic storage tests build locally. An unsigned synthetic Keychain write was refused with `errSecMissingEntitlement` (-34018). Running from source alone does not establish a usable credential store. A development verification bundle has now been signed using the separate Community App ID and authorized Developer ID profile; saving a disposable synthetic secret succeeded. This is not yet a published notarized installer. The commercial app's identity is not reused. No signing credentials or provisioning profiles are included here. OS user-presence prompts must be answered by the person using the app.
+The UI and synthetic storage tests build locally. An unsigned synthetic Keychain write was refused with `errSecMissingEntitlement` (-34018). Running from source alone does not establish a usable credential store. The published Community bundle uses its separate App ID and authorized Developer ID profile. Disposable synthetic save, Reveal and Copy were exercised in a signed development bundle; the final installer passes strict signature, notarization-ticket and Gatekeeper checks. The commercial app's identity is not reused. No signing credentials or provisioning profiles are included here. OS user-presence prompts must be answered by the person using the app.
 
 Reveal and Copy use two explicit actions: macOS authentication prepares a protected, short-lived value; then **Show value** or **Copy value** consumes that approval in the active window. Values stay hidden during authentication. The approval expires after 20 seconds and clears on selection changes, cancellation or focus loss after authentication. Returning focus never reveals or copies automatically.
 
