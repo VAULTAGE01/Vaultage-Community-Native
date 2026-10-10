@@ -80,7 +80,7 @@ struct WorkspaceView: View {
                 CommunityBadge()
                 Text("Local vault. No account.")
                     .font(.system(size: 12, weight: .medium))
-                Text("Free forever. Open source.\nThis source preview is not a signed or notarized release. Secret actions need a correctly signed, Keychain-enabled build; see the build guide.")
+                Text("Free forever. Open source.\nSecrets and project environments stay on this Mac. No account, subscription or cloud sync.")
                     .font(.system(size: 11)).foregroundStyle(CommunityTheme.muted).lineSpacing(4)
             }
             .padding(.top, 20)

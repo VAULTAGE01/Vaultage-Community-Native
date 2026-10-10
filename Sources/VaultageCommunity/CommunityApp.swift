@@ -12,10 +12,10 @@ struct VaultageCommunityApp: App {
                 .preferredColorScheme(.dark)
                 .frame(minWidth: 850, minHeight: 600)
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.didResignActiveNotification)) { _ in
-                    workspace.clearDisclosure()
+                    workspace.disclosureFocusLost()
                 }
                 .onReceive(NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)) { _ in
-                    workspace.hideVisibleDisclosure()
+                    workspace.disclosureFocusLost()
                 }
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { _ in
                     workspace.clearDisclosure()

@@ -13,10 +13,12 @@ final class WorkspaceModel: ObservableObject {
     @Published var notice: String?
     @Published private(set) var revealedValue: String?
     @Published private(set) var revealedID: UUID?
+    @Published private(set) var preparedDisclosure: PreparedCommunityDisclosure?
 
     private let store: CommunityStore
-    private var disclosureGeneration: UInt64 = 0
-    private var revealExpiry: Task<Void, Never>?
+    private let disclosureGate = HumanDisclosureGate()
+    private var disclosureSelectionID: UUID?
+    private var disclosureExpiry: Task<Void, Never>?
     private var clipboardExpiry: Task<Void, Never>?
     private var clipboardOwnership: (changeCount: Int, token: String)?
     private let ownershipType = NSPasteboard.PasteboardType("dev.arcalab.vaultage-community.clipboard-owner")
@@ -82,46 +84,63 @@ final class WorkspaceModel: ObservableObject {
     }
 
     func reveal(_ id: UUID) async {
+        await prepareDisclosure(id, purpose: .reveal)
+    }
+
+    func copy(_ id: UUID) async {
+        await prepareDisclosure(id, purpose: .copy)
+    }
+
+    private var disclosureWindowActive: Bool { NSApp.isActive && NSApp.keyWindow?.isKeyWindow == true }
+
+    private func prepareDisclosure(_ id: UUID, purpose: CommunityDisclosurePurpose) async {
         guard !isBusy else { return }
+        guard disclosureSelectionID == id, disclosureWindowActive else { return }
         clearDisclosure()
-        let generation = disclosureGeneration
+        let request = disclosureGate.begin(secretID: id, purpose: purpose)
         isBusy = true
         defer { isBusy = false }
         do {
             let title = secrets.first { $0.id == id }?.title ?? "Selected secret"
-            let secret = try await store.readSecret(id: id, prompt: "Reveal on screen: \(title)")
-            guard generation == disclosureGeneration, NSApp.isActive else {
-                notice = "Reveal canceled because this window lost focus. Authenticate again to reveal."
-                return
-            }
-            // This is the deliberate human disclosure boundary. Swift's String
-            // copies cannot be deterministically zeroed; release UI references
-            // after 20 seconds and whenever the app deactivates.
-            try secret.withDisclosureText { revealedValue = $0 }
-            revealedID = id
-            revealExpiry = Task { [weak self] in
-                try? await Task.sleep(for: .seconds(20))
+            let destination = purpose == .reveal ? "Prepare reveal" : "Prepare clipboard copy"
+            let secret = try await store.readSecret(id: id, prompt: "\(destination): \(title)")
+            guard disclosureSelectionID == id,
+                  let prepared = disclosureGate.prepare(secret, for: request, at: Date()) else { return }
+            // Authentication may have moved focus to an OS sheet. Keep only
+            // VaultSecret here; focus return has no disclosure action.
+            preparedDisclosure = prepared
+            notice = "Authentication complete. The value remains hidden until you click \(purpose == .reveal ? "Show value" : "Copy value")."
+            disclosureExpiry = Task { [weak self] in
+                try? await Task.sleep(for: .seconds(HumanDisclosureGate.lifetime))
                 guard !Task.isCancelled else { return }
                 self?.clearDisclosure()
             }
         } catch {
-            errorMessage = "The value was not revealed. Authenticate with macOS and keep this window active. A source build may need signing before Keychain access works."
+            guard disclosureGate.isAuthenticating(request) else { return }
+            clearDisclosure()
+            errorMessage = "Authentication was not completed. Try again with macOS authentication and a correctly signed, Keychain-enabled build. No value was disclosed."
         }
     }
 
-    func copy(_ id: UUID) async {
-        guard !isBusy else { return }
-        clearDisclosure()
-        let generation = disclosureGeneration
-        isBusy = true
-        defer { isBusy = false }
+    func showPreparedValue(_ prepared: PreparedCommunityDisclosure) {
+        guard prepared.purpose == .reveal, let secret = consumePrepared(prepared) else { return }
         do {
-            let title = secrets.first { $0.id == id }?.title ?? "Selected secret"
-            let secret = try await store.readSecret(id: id, prompt: "Copy to clipboard: \(title)")
-            guard generation == disclosureGeneration, NSApp.isActive else {
-                notice = "Copy canceled because this window lost focus. Authenticate again to copy."
-                return
-            }
+            // Deliberate human screen disclosure. Swift String storage cannot
+            // be zeroed; release UI references on focus loss and at the same
+            // 20-second deadline as the protected pending handle.
+            try secret.withDisclosureText { revealedValue = $0 }
+            revealedID = prepared.secretID
+        } catch {
+            clearDisclosure()
+            errorMessage = "This protected value could not be shown as text."
+        }
+    }
+
+    func copyPreparedValue(_ prepared: PreparedCommunityDisclosure) {
+        guard prepared.purpose == .copy, let secret = consumePrepared(prepared) else { return }
+        disclosureExpiry?.cancel()
+        disclosureExpiry = nil
+        do {
             let pasteboard = NSPasteboard.general
             let token = UUID().uuidString
             let item = NSPasteboardItem()
@@ -145,20 +164,49 @@ final class WorkspaceModel: ObservableObject {
                 self?.clearOwnedClipboard()
             }
         } catch {
-            errorMessage = "The value was not copied. Authenticate with macOS and keep this window active. A source build may need signing before Keychain access works."
+            clearDisclosure()
+            errorMessage = "This protected value could not be copied as text."
         }
     }
 
+    private func consumePrepared(_ prepared: PreparedCommunityDisclosure) -> VaultSecret? {
+        guard !isBusy, preparedDisclosure == prepared,
+              disclosureSelectionID == prepared.secretID,
+              disclosureWindowActive else { return nil }
+        guard let secret = disclosureGate.consume(requestID: prepared.requestID, secretID: prepared.secretID,
+                                                  purpose: prepared.purpose, whileWindowActive: disclosureWindowActive,
+                                                  at: Date()) else {
+            clearDisclosure()
+            notice = "This approval expired. Authenticate again to reveal or copy."
+            return nil
+        }
+        preparedDisclosure = nil
+        return secret
+    }
+
+    func selectSecretForDisclosure(_ id: UUID?) {
+        guard disclosureSelectionID != id else { return }
+        clearDisclosure()
+        disclosureSelectionID = id
+    }
+
     func clearDisclosure() {
-        disclosureGeneration &+= 1
+        disclosureGate.cancel()
+        preparedDisclosure = nil
         hideVisibleDisclosure()
     }
 
-    func hideVisibleDisclosure() {
+    func disclosureFocusLost() {
+        disclosureGate.focusLost()
+        preparedDisclosure = nil
+        hideVisibleDisclosure()
+    }
+
+    private func hideVisibleDisclosure() {
         revealedValue = nil
         revealedID = nil
-        revealExpiry?.cancel()
-        revealExpiry = nil
+        disclosureExpiry?.cancel()
+        disclosureExpiry = nil
     }
 
     func clearOwnedClipboard() {

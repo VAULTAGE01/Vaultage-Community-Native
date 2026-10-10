@@ -24,7 +24,9 @@ node scripts/verify-source-boundary.mjs
 swift run VaultageCommunity
 ```
 
-The UI and synthetic storage tests build locally. On the development machine, an unsigned synthetic Keychain write was refused with `errSecMissingEntitlement` (-34018). Running from source does not yet establish a usable credential store. A separate Community App ID and authorized Developer ID provisioning profile are being prepared; the commercial app's identity is not reused. No signing credentials or provisioning profiles are included here. OS user-presence prompts must be answered by the person using the app.
+The UI and synthetic storage tests build locally. An unsigned synthetic Keychain write was refused with `errSecMissingEntitlement` (-34018). Running from source alone does not establish a usable credential store. A development verification bundle has now been signed using the separate Community App ID and authorized Developer ID profile; saving a disposable synthetic secret succeeded. This is not yet a published notarized installer. The commercial app's identity is not reused. No signing credentials or provisioning profiles are included here. OS user-presence prompts must be answered by the person using the app.
+
+Reveal and Copy use two explicit actions: macOS authentication prepares a protected, short-lived value; then **Show value** or **Copy value** consumes that approval in the active window. Values stay hidden during authentication. The approval expires after 20 seconds and clears on selection changes, cancellation or focus loss after authentication. Returning focus never reveals or copies automatically.
 
 ## Data and limitations
 

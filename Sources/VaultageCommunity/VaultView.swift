@@ -85,7 +85,9 @@ struct VaultView: View {
         }
         .padding(30)
         .sheet(isPresented: $showingAdd) { AddSecretSheet() }
-        .onChange(of: selectedID) { _, _ in workspace.clearDisclosure() }
+        .onAppear { workspace.selectSecretForDisclosure(selectedID) }
+        .onDisappear { workspace.selectSecretForDisclosure(nil) }
+        .onChange(of: selectedID) { _, id in workspace.selectSecretForDisclosure(id) }
         .onChange(of: query) { _, _ in workspace.clearDisclosure() }
         .onChange(of: workspace.secrets.map(\.id)) { _, ids in
             if let selectedID, !ids.contains(selectedID) { self.selectedID = nil }
@@ -159,14 +161,30 @@ struct VaultView: View {
                 .frame(maxHeight: 180)
                 .background(CommunityTheme.background, in: RoundedRectangle(cornerRadius: 9))
                 .accessibilityLabel("Revealed secret value")
-                Text("Hides after 20 seconds or when the app loses focus.")
+                Text("Hides when the 20-second approval expires, or when this window loses focus.")
                     .font(.system(size: 11)).foregroundStyle(CommunityTheme.muted)
                 Button("Hide value") { workspace.clearDisclosure() }.buttonStyle(QuietButton())
+            } else if let prepared = workspace.preparedDisclosure, prepared.secretID == secret.id {
+                Text("••••••••••••••••")
+                    .font(.system(size: 21, design: .monospaced)).foregroundStyle(CommunityTheme.muted)
+                    .accessibilityLabel("Authenticated value remains hidden")
+                Text("Authentication complete. Your value is still hidden.")
+                    .font(.system(size: 12, weight: .medium)).foregroundStyle(CommunityTheme.foreground)
+                Text("Click below to \(prepared.purpose == .reveal ? "show it on screen" : "copy it to the clipboard"). This approval expires within 20 seconds and is cleared if this window loses focus.")
+                    .font(.system(size: 11)).foregroundStyle(CommunityTheme.muted).lineSpacing(4)
+                HStack {
+                    if prepared.purpose == .reveal {
+                        Button("Show value") { workspace.showPreparedValue(prepared) }.buttonStyle(AccentButton())
+                    } else {
+                        Button("Copy value") { workspace.copyPreparedValue(prepared) }.buttonStyle(AccentButton())
+                    }
+                    Button("Cancel") { workspace.clearDisclosure() }.buttonStyle(QuietButton())
+                }.disabled(workspace.isBusy)
             } else {
                 Text("••••••••••••••••")
                     .font(.system(size: 21, design: .monospaced)).foregroundStyle(CommunityTheme.muted)
                     .accessibilityLabel("Value is hidden")
-                Text("Authenticate with macOS to reveal or copy. Values are not shown in lists or project bindings.")
+                Text("Authenticate with macOS, then explicitly choose Show value or Copy value. Values stay hidden during authentication and never appear in lists or project bindings.")
                     .font(.system(size: 12)).foregroundStyle(CommunityTheme.muted).lineSpacing(4)
                 HStack {
                     Button { Task { await workspace.reveal(secret.id) } } label: { Label("Reveal", systemImage: "eye") }

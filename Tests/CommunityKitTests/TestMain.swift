@@ -7,6 +7,7 @@ import CommunityKit
 enum TestMain {
     static func main() async {
         let suite = CommunityStoreTests()
+        let disclosure = HumanDisclosureGateTests()
         var cases: [(String, @Sendable () async throws -> Void)] = [
             ("accountless workspace, namespace and label-only persistence", suite.testAccountlessEmptyWorkspaceAndLabelOnlyPersistence),
             ("failed save rollback", suite.testFailedSaveRollsBackByteIdenticalMetadataAndRetainsExistingCredentials),
@@ -30,7 +31,13 @@ enum TestMain {
             ("failed cleanup preserves a competing final file", suite.testFailedExportCleanupPreservesCompetingFinalFile),
             ("failed cleanup preserves a replaced temporary inode", suite.testFailedExportCleanupDoesNotDeleteReplacedTemporaryInode),
             ("atomic publication refuses a competing target", suite.testAtomicExportPublicationDoesNotOverwriteACompetingTarget),
-            ("separate store actors serialize writes", suite.testSeparateActorsReadLatestStateAndSerializeMetadataMutations)
+            ("separate store actors serialize writes", suite.testSeparateActorsReadLatestStateAndSerializeMetadataMutations),
+            ("authentication focus change requires a separate active click", disclosure.testAuthenticationFocusLossRequiresSeparateExplicitConsume),
+            ("ready focus loss and manual Hide clear protected pending state", disclosure.testReadyFocusLossAndManualCancelDropPendingValue),
+            ("canceled and replaced authentication results are refused", disclosure.testCanceledAndReplacedAuthenticationResultsCannotBecomeReady),
+            ("disclosure cannot transfer secret selection or purpose", disclosure.testSelectionAndPurposeCannotBeTransferred),
+            ("pending disclosure expires at 20 seconds and is single use", disclosure.testPendingValueExpiresAtTwentySecondsAndIsSingleUse),
+            ("disclosure aliases and concurrent consumers share one use", disclosure.testAliasesAndConcurrentConsumersShareOneUse)
         ]
         if ProcessInfo.processInfo.environment["COMMUNITY_TEST_NODE"] != nil {
             cases.append(("Node util.parseEnv literal roundtrip", suite.testExportRoundTripsThroughNodeParseEnv))

@@ -42,14 +42,14 @@ struct QuietButton: ButtonStyle {
 
 struct CommunityBadge: View {
     var body: some View {
-        Text("SOURCE PREVIEW")
+        Text("COMMUNITY BETA")
             .font(.system(size: 9, weight: .bold, design: .monospaced))
             .tracking(0.7)
             .foregroundStyle(CommunityTheme.accent)
             .padding(.horizontal, 8)
             .padding(.vertical, 5)
             .background(CommunityTheme.accent.opacity(0.1), in: Capsule())
-            .accessibilityLabel("Source preview. This is not a signed release.")
+            .accessibilityLabel("Vaultage Community beta")
     }
 }
 
